@@ -3,47 +3,47 @@ var parag = document.getElementById('parag');
 
 var voices = [];
 function talk(voice) {
-    var msg = new SpeechSynthesisUtterance();
-    msg.text = voice;
-    msg.lang = 'en';
+	var msg = new SpeechSynthesisUtterance();
+	msg.text = voice;
+	msg.lang = 'en';
     // msg.volume = 1;
     // msg.pitch = 1;
     // msg.voice = voices[4];
     msg.onstart = function (event) {
-        parag.innerText = event.target.text;
+    	parag.innerText = event.target.text;
     }
     window.speechSynthesis.speak(msg);
     msg.onerror = function (e) {
-        console.log(e)
+    	console.log(e)
     }
 
 }
 
 var messages = [
-    ''
+''
 ];
 
 
 
 function setSpeech() {
-    return new Promise(
-        function (resolve, reject) {
-            let synth = window.speechSynthesis;
-            let id;
+	return new Promise(
+		function (resolve, reject) {
+			let synth = window.speechSynthesis;
+			let id;
 
-            id = setInterval(() => {
-                if (synth.getVoices().length !== 0) {
-                    resolve(synth.getVoices());
-                    clearInterval(id);
-                }
-            }, 3);
-        }
-    )
+			id = setInterval(() => {
+				if (synth.getVoices().length !== 0) {
+					resolve(synth.getVoices());
+					clearInterval(id);
+				}
+			}, 3);
+		}
+		)
 }
 
 let s = setSpeech();
 s.then((all_voices) => {
-    voices = all_voices;
+	voices = all_voices;
     // console.log(voices)
 
     //messages.forEach(message => {
@@ -72,30 +72,30 @@ var tickets = [113, 115, 116, 132, 165, 187, 143, 453, 110];
 var counters = [10, 9, 300];
 
 function allocateTicket() {
-    tickets.forEach(ticket => {
-        var counter;
-        if (isEven(ticket)) {
-            if (isDivisibleBy5(ticket)) {
-                counter = counters[2]
-            } else {
-                counter = counters[0]
-            }
-        } else {
-            counter = counters[1]
-        }
+	tickets.forEach(ticket => {
+		var counter;
+		if (isEven(ticket)) {
+			if (isDivisibleBy5(ticket)) {
+				counter = counters[2]
+			} else {
+				counter = counters[0]
+			}
+		} else {
+			counter = counters[1]
+		}
 
-        display(ticket, counter);
-    })
+		display(ticket, counter);
+	})
 }
 
 function display(ticket, counter) {
-    let my_message = `Ticket Number ${ticket} Proceed to counter number : ${counter}`;
+	let my_message = `Ticket Number: ${ticket}, Proceed to counter number : ${counter}`;
     // 
     talk(my_message)
 }
 function isEven(n) {
-    return n % 2 == 0;
+	return n % 2 == 0;
 }
 function isDivisibleBy5(ticket) {
-    return ticket % 5 == 0;
+	return ticket % 5 == 0;
 }
