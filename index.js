@@ -5,16 +5,19 @@ var voices = [];
 function talk(voice) {
     var msg = new SpeechSynthesisUtterance();
     msg.text = voice;
-    msg.volume = 1;
-    msg.pitch = 1;
-    msg.voice = voices[4];
+    msg.lang = 'en';
+    // msg.volume = 1;
+    // msg.pitch = 1;
+    // msg.voice = voices[4];
     msg.onstart = function (event) {
         parag.innerText = event.target.text;
     }
     window.speechSynthesis.speak(msg);
+    msg.onerror = function (e) {
+        console.log(e)
+    }
 
 }
-// EDit here and add all messages to talk
 
 var messages = [
     ''

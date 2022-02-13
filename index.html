@@ -6,12 +6,33 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        body {
+            background-color: #fefefe;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 1078px;
+        }
 
+        .flex {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        p {
+            line-height: 1.5em;
+            color: red;
+            font-weight: bolder;
+        }
+    </style>
 </head>
 
 <body>
-    <p id="parag"></p>
-    <script type="text/javascript" src="index.js"></script>
+    <div class="flex">
+        <p id="parag"></p>
+        <p>This is cool</p>
+    </div>
+    <script type="text/javascript" src="./index.js"></script>
 </body>
 
 </html>
